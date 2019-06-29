@@ -1,4 +1,4 @@
-#python like_user_followers.py -u bromalayabro -p subhanallah -users newkhai.my
+# python like_user_followers.py -u bromalayabro -p subhanallah -users newkhai.my
 
 """
 my script
@@ -8,7 +8,6 @@ like following
 follow following
 comment following
 """
-
 
 import argparse
 import os
@@ -20,7 +19,6 @@ import threading
 
 sys.path.append(os.path.join(sys.path[0], '../'))
 from instabot import Bot
-
 
 
 class like_follow(threading.Thread):
@@ -37,7 +35,8 @@ class like_follow(threading.Thread):
             time.sleep(30 + 20 * random.random())
 
     def unfollow_non_followers(self):
-        bot.unfollow_non_followers(n_to_unfollows=1000)
+        # bot.unfollow_non_followers(n_to_unfollows=1000)
+        bot.unfollow_everyone()
 
     def ignore_error_like_follow(self):
         try:
@@ -52,6 +51,7 @@ class like_follow(threading.Thread):
         while True:
             schedule.run_pending()
             time.sleep(1)
+
 
 ###### RUN IN SCRIPT ###########
 # bot = Bot()
@@ -71,6 +71,5 @@ bot = Bot()
 bot.login(username=args.u, password=args.p,
           proxy=args.proxy)
 user_id = bot.get_user_id_from_username(args.users)
-
 
 like_follow().start()
